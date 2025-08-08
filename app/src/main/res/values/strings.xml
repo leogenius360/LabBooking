@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Lab Booking</string>
+
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="full_name">Full Name</string>
+    <string name="book_lab">Book Lab</string>
+    <string name="my_bookings">My Bookings</string>
+    <string name="available_labs">Available Labs</string>
+    <string name="admin_panel">Admin Panel</string>
+    <string name="logout">Logout</string>
+    <string name="pending">Pending</string>
+    <string name="approved">Approved</string>
+    <string name="rejected">Rejected</string>
+    <string name="cancelled">Cancelled</string>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "30621891224",
+    "project_id": "test-lab-e6719",
+    "storage_bucket": "test-lab-e6719.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30621891224:android:472a1b38b195387352eeed",
+        "android_client_info": {
+          "package_name": "com.testlab.labbooking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASCWPutb_eWdGGyx0kI_9ODwMMPyoCkrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

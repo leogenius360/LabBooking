@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/filter_all"
+        android:title="All"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/filter_pending"
+        android:title="Pending"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/filter_approved"
+        android:title="Approved"
+        app:showAsAction="ifRoom" />
+    
+    <item
+        android:id="@+id/filter_rejected"
+        android:title="Rejected"
+        app:showAsAction="ifRoom" />
+</menu>
