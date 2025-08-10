@@ -225,65 +225,47 @@ public class BookingActivity extends AppCompatActivity {
     }
 
     private boolean validateInputs() {
+        // Check required fields
         if (spinnerLabs.getSelectedItemPosition() == -1) {
-            Toast.makeText(this, "Please select a lab", Toast.LENGTH_SHORT).show();
+            showError("Please select a lab");
             return false;
         }
 
-        if (TextUtils.isEmpty(selectedDate)) {
-            Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show();
+        if (selectedDate == null || selectedStartTime == null || selectedEndTime == null) {
+            showError("Please select date and time");
             return false;
         }
 
-        if (TextUtils.isEmpty(selectedStartTime)) {
-            Toast.makeText(this, "Please select start time", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (TextUtils.isEmpty(selectedEndTime)) {
-            Toast.makeText(this, "Please select end time", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-
-        if (TextUtils.isEmpty(etPurpose.getText().toString().trim())) {
+        if (etPurpose.getText().toString().trim().isEmpty()) {
             etPurpose.setError("Purpose is required");
             return false;
         }
 
-        // Validate time range
+        // Validate time logic
         if (selectedStartTime.compareTo(selectedEndTime) >= 0) {
-            Toast.makeText(this, "End time must be after start time", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        // Validate date is today or future
-        if (!DateTimeUtils.isDateTodayOrFuture(selectedDate)) {
-            Toast.makeText(this, "Date must be today or in the future", Toast.LENGTH_SHORT).show();
+            showError("End time must be after start time");
             return false;
         }
 
-        // Validate time range
-        if (!DateTimeUtils.isValidTimeRange(selectedStartTime, selectedEndTime)) {
-            Toast.makeText(this, "End time must be after start time", Toast.LENGTH_SHORT).show();
+        // Check duration (max 4 hours)
+        int durationMinutes = DateTimeUtils.getTimeDifferenceInMinutes(selectedStartTime, selectedEndTime);
+        if (durationMinutes > 240) { // 4 hours
+            showError("Maximum booking duration is 4 hours");
             return false;
         }
 
-        // Validate booking duration (max 4 hours)
-        int duration = DateTimeUtils.getTimeDifferenceInMinutes(selectedStartTime, selectedEndTime);
-        if (duration > 4 * 60) {
-            Toast.makeText(this, "Maximum booking duration is 4 hours", Toast.LENGTH_SHORT).show();
+        // Check if booking is in the past
+        if (DateTimeUtils.isToday(selectedDate) &&
+                selectedStartTime.compareTo(DateTimeUtils.getCurrentTime()) < 0) {
+            showError("Cannot book in the past");
             return false;
-        }
-
-        // Validate not in past if today
-        if (DateTimeUtils.isToday(selectedDate)) {
-            String currentTime = DateTimeUtils.getCurrentTime();
-            if (selectedStartTime.compareTo(currentTime) < 0) {
-                Toast.makeText(this, "Start time cannot be in the past", Toast.LENGTH_SHORT).show();
-                return false;
-            }
         }
 
         return true;
+    }
+
+    private void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void checkForConflicts(Lab lab, Runnable onNoConflicts) {

@@ -13,84 +13,118 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <LinearLayout
+        <!-- Lab Name -->
+        <TextView
+            android:id="@+id/tvLabName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
+            android:text="Lab Name"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="4dp" />
 
-            <TextView
-                android:id="@+id/tvLabName"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Lab Name"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <!-- User Name (for admin view) -->
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Booked by: User Name"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tvStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pending"
-                android:textSize="12sp"
-                android:padding="4dp"
-                android:background="@drawable/ic_launcher_background"
-                android:textColor="@android:color/white" />
-
-        </LinearLayout>
-
+        <!-- Date and Time -->
         <TextView
             android:id="@+id/tvDateTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="2024-03-15 | 09:00 - 11:00"
+            android:text="2023-12-01 | 10:00 - 12:00"
             android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
+            android:textColor="@android:color/darker_gray"
+            android:drawableStart="@drawable/ic_calendar"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp" />
 
+        <!-- Purpose -->
         <TextView
             android:id="@+id/tvPurpose"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Purpose: Programming Class"
-            android:textSize="12sp"
-            android:textColor="@android:color/darker_gray"
+            android:text="Purpose: Research Project"
+            android:textSize="14sp"
             android:layout_marginBottom="8dp" />
 
+        <!-- Status -->
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PENDING"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_orange_dark"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Admin Notes -->
         <TextView
             android:id="@+id/tvAdminNotes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Admin Notes: Approved for programming session"
-            android:textSize="12sp"
-            android:textStyle="italic"
+            android:text="Admin Notes: Additional information"
+            android:textSize="13sp"
+            android:textColor="@color/colorAccent"
+            android:background="@color/background"
+            android:padding="8dp"
+            android:layout_marginBottom="12dp"
             android:visibility="gone" />
 
+        <!-- Action Buttons -->
         <LinearLayout
             android:id="@+id/layoutActions"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="12dp"
             android:visibility="gone">
 
             <Button
                 android:id="@+id/btnApprove"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginEnd="4dp"
                 android:text="Approve"
-                android:layout_marginEnd="8dp"
-                style="@style/Widget.MaterialComponents.Button" />
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btnReject"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
                 android:text="Reject"
-                android:layout_marginStart="8dp"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="Cancel"
+                android:textColor="@android:color/holo_red_dark"
+                android:strokeColor="@android:color/holo_red_dark"
+                android:visibility="gone" />
 
         </LinearLayout>
 

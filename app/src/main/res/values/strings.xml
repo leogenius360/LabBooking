@@ -15,4 +15,86 @@
     <string name="approved">Approved</string>
     <string name="rejected">Rejected</string>
     <string name="cancelled">Cancelled</string>
+
+    <!-- ManageLabsActivity related strings -->
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="add_lab">Add Lab</string>
+    <string name="refresh">Refresh</string>
+    <string name="export">Export</string>
+    <string name="settings">Settings</string>
+
+    <!-- Empty state strings -->
+    <string name="no_labs_found">No labs found</string>
+    <string name="tap_plus_to_add_lab">Tap + to add a new lab</string>
+    <string name="no_labs_icon">No labs icon</string>
+    <string name="labs_count">%d labs found</string>
+
+    <!-- Lab management strings -->
+    <string name="manage_labs">Manage Labs</string>
+    <string name="lab_created_successfully">Lab created successfully</string>
+    <string name="lab_updated_successfully">Lab updated successfully</string>
+    <string name="lab_deleted_successfully">Lab deleted successfully</string>
+    <string name="error_creating_lab">Error creating lab: %s</string>
+    <string name="error_updating_lab">Error updating lab: %s</string>
+    <string name="error_deleting_lab">Error deleting lab: %s</string>
+    <string name="error_loading_labs">Error loading labs: %s</string>
+
+    <!-- Dialog strings -->
+    <string name="edit_lab">Edit Lab</string>
+    <string name="add_new_lab">Add New Lab</string>
+    <string name="delete_lab">Delete Lab</string>
+    <string name="delete_lab_confirmation">Are you sure you want to delete %s?\n\nThis action cannot be undone.</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+
+    <!-- Validation strings -->
+    <string name="lab_name_required">Lab name is required</string>
+    <string name="capacity_required">Capacity is required</string>
+    <string name="capacity_must_be_positive">Capacity must be greater than 0</string>
+    <string name="invalid_capacity_number">Please enter a valid number</string>
+    <string name="location_required">Location is required</string>
+
+    <!-- Status strings -->
+    <string name="lab_enabled">%s has been enabled</string>
+    <string name="lab_disabled">%s has been disabled</string>
+    <string name="refreshing_labs">Refreshing labs…</string>
+
+    <!-- Search strings -->
+    <string name="search_labs_hint">Search labs…</string>
+    <string name="no_labs_match_search">No labs match your search</string>
+
+    <!-- Form field strings -->
+    <string name="lab_name">Lab Name</string>
+    <string name="description_optional">Description (Optional)</string>
+    <string name="capacity">Capacity</string>
+    <string name="category_optional">Category (Optional)</string>
+    <string name="location">Location</string>
+    <string name="resources_optional">Resources (Optional)</string>
+    <string name="resources_helper_text">Separate multiple resources with commas</string>
+    <string name="operating_hours">Operating Hours</string>
+    <string name="open_time">Open Time</string>
+    <string name="close_time">Close Time</string>
+    <string name="booking_duration_limits">Booking Duration Limits</string>
+    <string name="min_duration_mins">Min Duration (mins)</string>
+    <string name="max_duration_hrs">Max Duration (hrs)</string>
+    <string name="min_booking_helper">Minimum booking duration</string>
+    <string name="max_booking_helper">Maximum booking duration</string>
+    <string name="active">Active</string>
+    <string name="maintenance_mode">Maintenance Mode</string>
+    <string name="priority_1_10">Priority (1-10)</string>
+    <string name="priority_helper">Lower numbers = higher priority</string>
+    <string name="cost_settings_optional">Cost Settings (Optional)</string>
+    <string name="hourly_rate">Hourly Rate</string>
+    <string name="setup_fee">Setup Fee</string>
+
+    <!-- Default values -->
+    <string name="default_open_time">08:00 AM</string>
+    <string name="default_close_time">06:00 PM</string>
+    <string name="default_min_duration">30</string>
+    <string name="default_max_duration">4</string>
+    <string name="default_priority">5</string>
+    <string name="default_cost">0.00</string>
 </resources>

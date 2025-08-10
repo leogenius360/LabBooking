@@ -1,6 +1,7 @@
 package com.testlab.labbooking.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.testlab.labbooking.R;
 import com.testlab.labbooking.models.Booking;
+import com.testlab.labbooking.models.BookingStatus;
 import com.testlab.labbooking.utils.DatabaseUtils;
 
 import java.util.ArrayList;
@@ -28,8 +30,8 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
 
     public interface BookingActionListener {
         void onApprove(Booking booking);
-
         void onReject(Booking booking);
+        void onCancel(Booking booking);
     }
 
     public BookingsAdapter(Context context, boolean isAdminView) {
@@ -51,97 +53,126 @@ public class BookingsAdapter extends RecyclerView.Adapter<BookingsAdapter.Bookin
 
     @Override
     public void onBindViewHolder(@NonNull BookingViewHolder holder, int position) {
-        Booking booking = bookings.get(position);
-        holder.bind(booking);
+        if (position >= 0 && position < bookings.size()) {
+            Booking booking = bookings.get(position);
+            holder.bind(booking);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return bookings.size();
+        return bookings != null ? bookings.size() : 0;
     }
 
     public void updateBookings(List<Booking> newBookings) {
-        this.bookings.clear();
-        this.bookings.addAll(newBookings);
+        if (newBookings == null) {
+            this.bookings.clear();
+        } else {
+            this.bookings.clear();
+            this.bookings.addAll(newBookings);
+        }
         notifyDataSetChanged();
     }
 
+    public void addBooking(Booking booking) {
+        if (booking != null) {
+            this.bookings.add(0, booking); // Add at beginning
+            notifyItemInserted(0);
+        }
+    }
+
+    public void removeBooking(String bookingId) {
+        if (bookingId == null || bookingId.isEmpty()) return;
+
+        for (int i = 0; i < bookings.size(); i++) {
+            if (bookingId.equals(bookings.get(i).getId())) {
+                bookings.remove(i);
+                notifyItemRemoved(i);
+                break;
+            }
+        }
+    }
+
+    public void updateBooking(Booking updatedBooking) {
+        if (updatedBooking == null || updatedBooking.getId() == null) return;
+
+        for (int i = 0; i < bookings.size(); i++) {
+            if (updatedBooking.getId().equals(bookings.get(i).getId())) {
+                bookings.set(i, updatedBooking);
+                notifyItemChanged(i);
+                break;
+            }
+        }
+    }
+
     class BookingViewHolder extends RecyclerView.ViewHolder {
-        private TextView tvLabName, tvDateTime, tvPurpose, tvStatus, tvAdminNotes;
+        private TextView tvLabName, tvDateTime, tvPurpose, tvStatus, tvAdminNotes, tvUserName;
         private LinearLayout layoutActions;
-        private Button btnApprove, btnReject;
+        private Button btnApprove, btnReject, btnCancel;
 
         public BookingViewHolder(@NonNull View itemView) {
             super(itemView);
+            initViews();
+        }
+
+        private void initViews() {
             tvLabName = itemView.findViewById(R.id.tvLabName);
             tvDateTime = itemView.findViewById(R.id.tvDateTime);
             tvPurpose = itemView.findViewById(R.id.tvPurpose);
             tvStatus = itemView.findViewById(R.id.tvStatus);
             tvAdminNotes = itemView.findViewById(R.id.tvAdminNotes);
+            tvUserName = itemView.findViewById(R.id.tvUserName); // For admin view
             layoutActions = itemView.findViewById(R.id.layoutActions);
             btnApprove = itemView.findViewById(R.id.btnApprove);
             btnReject = itemView.findViewById(R.id.btnReject);
+            btnCancel = itemView.findViewById(R.id.btnCancel);
         }
 
         public void bind(Booking booking) {
-            tvLabName.setText(booking.getLabName());
-            tvDateTime.setText(booking.getDate() + " | " + booking.getStartTime() + " - " + booking.getEndTime());
+            if (booking == null) return;
+
+            // Basic info
+            tvLabName.setText(booking.getLabName() != null ? booking.getLabName() : "Unknown Lab");
+            tvDateTime.setText(booking.getDateTimeDisplay());
             tvPurpose.setText("Purpose: " + booking.getPurpose());
 
-            // Set status with appropriate color
-            tvStatus.setText(booking.getStatus().toUpperCase());
-            int statusColor = getStatusColor(booking.getStatus());
-            tvStatus.setBackgroundColor(statusColor);
+            // Status with color
+            BookingStatus status = booking.getStatus();
+            tvStatus.setText(status.getDisplayName());
+            tvStatus.setBackgroundColor(Color.parseColor(status.getColorCode()));
 
-            // Show admin notes if available
-            if (booking.getAdminNotes() != null && !booking.getAdminNotes().isEmpty()) {
-                tvAdminNotes.setText("Admin Notes: " + booking.getAdminNotes());
-                tvAdminNotes.setVisibility(View.VISIBLE);
-            } else {
-                tvAdminNotes.setVisibility(View.GONE);
+            // Admin notes if present
+            tvAdminNotes.setVisibility(
+                    booking.getAdminNotes() != null ? View.VISIBLE : View.GONE);
+            if (booking.getAdminNotes() != null) {
+                tvAdminNotes.setText("Notes: " + booking.getAdminNotes());
             }
 
-            // Show admin actions if in admin view and booking is pending
-            if (isAdminView && DatabaseUtils.STATUS_PENDING.equals(booking.getStatus())) {
-                layoutActions.setVisibility(View.VISIBLE);
-                btnApprove.setOnClickListener(v -> {
-                    if (listener != null) listener.onApprove(booking);
-                });
-                btnReject.setOnClickListener(v -> {
-                    if (listener != null) listener.onReject(booking);
-                });
-            } else {
-                layoutActions.setVisibility(View.GONE);
+            // Show user name in admin view
+            if (isAdminView && tvUserName != null) {
+                tvUserName.setText("Booked by: " + booking.getUserName());
+                tvUserName.setVisibility(View.VISIBLE);
             }
+
+            // Action buttons based on status and view type
+            setupActionButtons(booking, status);
         }
 
-        private int getStatusColor(String status) {
-            switch (status) {
-                case DatabaseUtils.STATUS_APPROVED:
-                    return ContextCompat.getColor(context, android.R.color.holo_green_dark);
-                case DatabaseUtils.STATUS_REJECTED:
-                case DatabaseUtils.STATUS_CANCELLED:
-                    return ContextCompat.getColor(context, android.R.color.holo_red_dark);
-                case DatabaseUtils.STATUS_PENDING:
-                default:
-                    return ContextCompat.getColor(context, android.R.color.holo_orange_dark);
+        private void setupActionButtons(Booking booking, BookingStatus status) {
+            boolean showActions = (isAdminView && status.canAdminApprove()) ||
+                    (!isAdminView && status.canUserCancel());
+
+            layoutActions.setVisibility(showActions ? View.VISIBLE : View.GONE);
+
+            if (isAdminView && status == BookingStatus.PENDING) {
+                btnApprove.setVisibility(View.VISIBLE);
+                btnReject.setVisibility(View.VISIBLE);
+                btnCancel.setVisibility(View.GONE);
+            } else if (!isAdminView && status == BookingStatus.PENDING) {
+                btnApprove.setVisibility(View.GONE);
+                btnReject.setVisibility(View.GONE);
+                btnCancel.setVisibility(View.VISIBLE);
             }
         }
-
-//        public void updateBookings(List<Booking> bookings) {
-//            this.bookings = bookings;
-//            notifyDataSetChanged();
-//
-//            // Add this to your adapter
-//            if (bookings.isEmpty()) {
-//                if (emptyView != null) {
-//                    emptyView.setVisibility(View.VISIBLE);
-//                }
-//            } else {
-//                if (emptyView != null) {
-//                    emptyView.setVisibility(View.GONE);
-//                }
-//            }
-//        }
     }
 }

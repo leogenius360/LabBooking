@@ -8,30 +8,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center">
+        android:padding="24dp">
 
         <ImageView
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:layout_marginBottom="32dp"
-            android:src="@drawable/ic_booking"
-            android:contentDescription="Lab Booking Logo" />
+            android:contentDescription="Lab Booking Logo"
+            android:src="@drawable/ic_booking" />
 
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
             android:text="Login"
             android:textSize="28sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="32dp" />
+            android:textStyle="bold" />
 
+        <!-- Name Field -->
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:visibility="gone"
             app:boxStrokeColor="@color/colorPrimary">
 
             <EditText
@@ -39,10 +42,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Full Name"
-                android:inputType="textPersonName"
-                android:visibility="gone" />
+                android:inputType="textPersonName|textCapWords" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Email Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,10 +60,11 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Password Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             app:boxStrokeColor="@color/colorPrimary"
             app:passwordToggleEnabled="true">
 
@@ -72,38 +76,100 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Department Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDepartment"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <AutoCompleteTextView
+                android:id="@+id/etDepartment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Department"
+                android:inputType="text|textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- ID Number Field -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilIdNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:visibility="gone"
+            app:boxStrokeColor="@color/colorPrimary">
+
+            <EditText
+                android:id="@+id/etIdNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Student/Staff ID"
+                android:inputType="text|textCapCharacters" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Login Button -->
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
             android:text="Login"
-            android:textSize="16sp"
-            android:layout_marginBottom="16dp" />
+            android:textSize="16sp" />
 
+        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:layout_marginBottom="12dp"
             android:text="Register"
             android:textSize="16sp"
-            android:layout_marginBottom="16dp"
             android:visibility="gone" />
 
+        <!-- Forgot Password Button -->
+        <Button
+            android:id="@+id/btnForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:text="Forgot Password?"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+
+        <!-- Toggle Mode Button -->
         <Button
             android:id="@+id/btnToggleMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:text="Need an account? Register"
             android:textColor="@color/colorPrimary"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp" />
+            android:textSize="14sp" />
 
+        <!-- Progress Bar -->
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:visibility="gone" />
+
+        <!-- Helper Text -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:padding="8dp"
+            android:text="Use your university email for better access and role assignment"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="12sp" />
 
     </LinearLayout>
 </ScrollView>

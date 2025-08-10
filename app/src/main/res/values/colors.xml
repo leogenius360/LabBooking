@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Legacy colors (keeping for backward compatibility) -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,13 +8,127 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="green">#4CAF50</color>
-    <color name="red">#F44336</color>
 
+    <!-- Primary Brand Colors -->
     <color name="colorPrimary">#2196F3</color>
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#FF9800</color>
+
+    <!-- Material Design 3 - Light Theme Colors -->
+    <color name="primary">#2196F3</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#E3F2FD</color>
+    <color name="on_primary_container">#0D47A1</color>
+
+    <color name="secondary">#FF9800</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="secondary_container">#FFF3E0</color>
+    <color name="on_secondary_container">#E65100</color>
+
+    <color name="tertiary">#4CAF50</color>
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#E8F5E8</color>
+    <color name="on_tertiary_container">#1B5E20</color>
+
+    <!-- Surface Colors -->
+    <color name="surface">#2196F3</color>
+    <color name="on_surface">#1C1B1F</color>
+    <color name="surface_variant">#E7E0EC</color>
+    <color name="on_surface_variant">#49454F</color>
+    <color name="surface_container_lowest">#FFFFFF</color>
+    <color name="surface_container_low">#F7F2FA</color>
+    <color name="surface_container">#F1ECF4</color>
+    <color name="surface_container_high">#ECE6F0</color>
+    <color name="surface_container_highest">#E6E0E9</color>
+
+    <!-- Background -->
+    <color name="background">#FEFBFF</color>
+    <color name="on_background">#1C1B1F</color>
+
+    <!-- Error Colors -->
+    <color name="error">#BA1A1A</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="error_container">#FFDAD6</color>
+    <color name="on_error_container">#410002</color>
+
+    <!-- Outline Colors -->
+    <color name="outline">#79747E</color>
+    <color name="outline_variant">#CAC4D0</color>
+
+    <!-- Inverse Colors -->
+    <color name="inverse_surface">#313033</color>
+    <color name="inverse_on_surface">#F4EFF4</color>
+    <color name="inverse_primary">#B0C7FF</color>
+
+    <!-- Material Design 3 - Dark Theme Colors -->
+    <color name="primary_dark">#B0C7FF</color>
+    <color name="on_primary_dark">#003258</color>
+    <color name="primary_container_dark">#004881</color>
+    <color name="on_primary_container_dark">#D1E4FF</color>
+
+    <color name="secondary_dark">#FFB77C</color>
+    <color name="on_secondary_dark">#4A2800</color>
+    <color name="secondary_container_dark">#6A3C00</color>
+    <color name="on_secondary_container_dark">#FFDCC2</color>
+
+    <color name="tertiary_dark">#4DD850</color>
+    <color name="on_tertiary_dark">#003A03</color>
+    <color name="tertiary_container_dark">#005305</color>
+    <color name="on_tertiary_container_dark">#6FF46F</color>
+
+    <color name="surface_dark">#141218</color>
+    <color name="on_surface_dark">#E6E0E9</color>
+    <color name="surface_variant_dark">#49454F</color>
+    <color name="on_surface_variant_dark">#CAC4D0</color>
+
+    <color name="background_dark">#141218</color>
+    <color name="on_background_dark">#E6E0E9</color>
+
+    <color name="error_dark">#FFB4AB</color>
+    <color name="on_error_dark">#690005</color>
+    <color name="error_container_dark">#93000A</color>
+    <color name="on_error_container_dark">#FFDAD6</color>
+
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="success_container">#E8F5E8</color>
+    <color name="on_success">#FFFFFF</color>
+    <color name="on_success_container">#1B5E20</color>
+
+    <color name="warning">#FF9800</color>
+    <color name="warning_container">#FFF3E0</color>
+    <color name="on_warning">#FFFFFF</color>
+    <color name="on_warning_container">#E65100</color>
+
+    <color name="info">#2196F3</color>
+    <color name="info_container">#E3F2FD</color>
+    <color name="on_info">#FFFFFF</color>
+    <color name="on_info_container">#0D47A1</color>
+
+    <!-- Legacy status colors (keeping for backward compatibility) -->
+    <color name="green">#4CAF50</color>
+    <color name="red">#F44336</color>
     <color name="colorSuccess">#4CAF50</color>
     <color name="colorWarning">#FF9800</color>
     <color name="colorError">#F44336</color>
+
+    <!-- Booking Status Colors -->
+    <color name="status_pending">#FF9800</color>
+    <color name="status_pending_container">#FFF3E0</color>
+    <color name="status_approved">#4CAF50</color>
+    <color name="status_approved_container">#E8F5E8</color>
+    <color name="status_rejected">#F44336</color>
+    <color name="status_rejected_container">#FFEBEE</color>
+    <color name="status_cancelled">#9E9E9E</color>
+    <color name="status_cancelled_container">#F5F5F5</color>
+
+    <!-- Shadow and Elevation -->
+    <color name="shadow">#000000</color>
+    <color name="surface_tint">#2196F3</color>
+
+    <!-- Transparent overlays -->
+    <color name="scrim">#80000000</color>
+    <color name="overlay_light">#1A000000</color>
+    <color name="overlay_medium">#4D000000</color>
+    <color name="overlay_heavy">#80000000</color>
 </resources>

@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView 
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardElevation="4dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,39 +15,73 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Lab Name -->
         <TextView
             android:id="@+id/tvLabName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lab Name"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:id="@+id/tvCapacity"
+        <!-- Lab Details Row -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Capacity: 20" />
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
 
+            <TextView
+                android:id="@+id/tvCapacity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Capacity: 20"
+                android:textSize="14sp"
+                android:drawableStart="@drawable/ic_people"
+                android:drawablePadding="4dp"
+                android:gravity="center_vertical" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Active"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@android:color/holo_green_dark"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp" />
+
+        </LinearLayout>
+
+        <!-- Location -->
         <TextView
             android:id="@+id/tvLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Building A, Room 101" />
+            android:text="Building A, Room 101"
+            android:textSize="14sp"
+            android:textColor="@android:color/darker_gray"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/tvStatus"
+        <!-- Divider -->
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Active" />
+            android:layout_height="1dp"
+            android:background="@color/background"
+            android:layout_marginBottom="12dp" />
 
+        <!-- Action Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <Button
@@ -56,7 +91,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:text="Edit" />
+                android:text="Edit"
+                android:textColor="@color/on_primary"
+                android:drawableStart="@drawable/ic_edit"
+                android:drawablePadding="4dp" />
 
             <Button
                 android:id="@+id/btnToggleStatus"
@@ -65,7 +103,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginHorizontal="4dp"
-                android:text="Disable" />
+                android:text="Disable"
+                android:textColor="@color/on_primary"
+                android:drawableStart="@drawable/ic_toggle"
+                android:drawablePadding="4dp" />
 
             <Button
                 android:id="@+id/btnDelete"
@@ -74,7 +115,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="4dp"
-                android:text="Delete" />
+                android:text="Delete"
+                android:textColor="@android:color/holo_red_dark"
+                android:strokeColor="@android:color/holo_red_dark"
+                android:drawableStart="@drawable/ic_delete"
+                android:drawablePadding="4dp" />
+
         </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

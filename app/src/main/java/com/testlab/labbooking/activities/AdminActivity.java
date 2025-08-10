@@ -36,22 +36,18 @@ import java.util.Arrays;
 import java.util.List;
 
 public class AdminActivity extends AppCompatActivity implements BookingsAdapter.BookingActionListener {
-
     private RecyclerView recyclerPendingBookings;
     private BookingsAdapter bookingsAdapter;
     private FloatingActionButton fabAddLab;
     private TextView tvEmptyState;
-
     private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
         // Check if user is admin
         checkAdminAccess();
-
         initViews();
         setupToolbar();
         setupRecyclerView();
@@ -143,6 +139,12 @@ public class AdminActivity extends AppCompatActivity implements BookingsAdapter.
     public void onReject(Booking booking) {
         showActionDialog(booking, DatabaseUtils.STATUS_REJECTED, "Reject Booking");
     }
+    @Override
+    public void onCancel(Booking booking) {
+        // This method is called from adapter but admins don't cancel bookings
+        // Users cancel their own bookings
+    }
+
 
     private void showActionDialog(Booking booking, String newStatus, String title) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -150,17 +152,14 @@ public class AdminActivity extends AppCompatActivity implements BookingsAdapter.
         builder.setMessage("Lab: " + booking.getLabName() + "\nDate: " + booking.getDate() +
                 "\nTime: " + booking.getStartTime() + " - " + booking.getEndTime() +
                 "\nUser: " + booking.getUserName());
-
         // Add notes input
         EditText etNotes = new EditText(this);
         etNotes.setHint("Admin notes (optional)");
         builder.setView(etNotes);
-
         builder.setPositiveButton("Confirm", (dialog, which) -> {
             String notes = etNotes.getText().toString().trim();
             updateBookingStatus(booking, newStatus, notes);
         });
-
         builder.setNegativeButton("Cancel", null);
         builder.show();
     }
@@ -183,17 +182,14 @@ public class AdminActivity extends AppCompatActivity implements BookingsAdapter.
     private void showAddLabDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Add New Lab");
-
         View view = LayoutInflater.from(this).inflate(R.layout.dialog_add_lab, null);
         builder.setView(view);
-
         EditText etLabName = view.findViewById(R.id.etLabName);
         EditText etDescription = view.findViewById(R.id.etDescription);
         EditText etCapacity = view.findViewById(R.id.etCapacity);
         EditText etLocation = view.findViewById(R.id.etLocation);
         EditText etResources = view.findViewById(R.id.etResources);
         CheckBox cbActive = view.findViewById(R.id.cbActive);
-
         builder.setPositiveButton("Save", (dialog, which) -> {
             // Validate inputs
             String name = etLabName.getText().toString().trim();
@@ -207,19 +203,16 @@ public class AdminActivity extends AppCompatActivity implements BookingsAdapter.
                 Toast.makeText(this, "Lab name is required", Toast.LENGTH_SHORT).show();
                 return;
             }
-
             int capacity = 10; // default
             try {
                 capacity = Integer.parseInt(capacityStr);
             } catch (NumberFormatException e) {
                 Toast.makeText(this, "Invalid capacity. Using default (10)", Toast.LENGTH_SHORT).show();
             }
-
             List<String> resources = new ArrayList<>();
             if (!resourcesStr.isEmpty()) {
                 resources = Arrays.asList(resourcesStr.split("\\s*,\\s*"));
             }
-
             // Create lab object
             Lab lab = new Lab();
             lab.setName(name);
@@ -228,11 +221,9 @@ public class AdminActivity extends AppCompatActivity implements BookingsAdapter.
             lab.setLocation(location);
             lab.setResources(resources);
             lab.setActive(isActive);
-
             // Save to Firestore
             saveLabToFirestore(lab);
         });
-
         builder.setNegativeButton("Cancel", null);
         builder.show();
     }

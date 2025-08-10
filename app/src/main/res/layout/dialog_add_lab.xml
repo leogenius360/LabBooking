@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="16dp">
 
     <LinearLayout
@@ -9,74 +10,324 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Lab Name -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="16dp"
+            android:hint="Lab Name"
+            app:startIconDrawable="@drawable/ic_lab"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLabName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Lab Name"
-                android:inputType="textCapWords" />
+                android:inputType="textCapWords"
+                android:maxLength="50" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Description -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="16dp"
+            android:hint="Description (Optional)"
+            app:startIconDrawable="@drawable/ic_description"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Description" />
+                android:inputType="textMultiLine|textCapSentences"
+                android:lines="3"
+                android:maxLength="200"
+                android:scrollbars="vertical" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Row for Capacity and Category -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-            <EditText
-                android:id="@+id/etCapacity"
-                android:layout_width="match_parent"
+            <!-- Capacity -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
                 android:hint="Capacity"
-                android:inputType="number" />
-        </com.google.android.material.textfield.TextInputLayout>
+                app:startIconDrawable="@drawable/ic_people"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCapacity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Category -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="Category (Optional)"
+                app:startIconDrawable="@drawable/ic_category"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLength="30" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Location -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp">
+            android:layout_marginBottom="16dp"
+            android:hint="Location"
+            app:startIconDrawable="@drawable/ic_location"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Location" />
+                android:inputType="textCapWords"
+                android:maxLength="100" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Resources -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            android:hint="Resources (Optional)"
+            app:helperText="Separate multiple resources with commas"
+            app:startIconDrawable="@drawable/ic_resources"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <EditText
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etResources"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Resources (comma separated)"
-                android:inputType="text" />
+                android:inputType="textMultiLine|textCapWords"
+                android:lines="2"
+                android:maxLength="300"
+                android:scrollbars="vertical" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/cbActive"
+        <!-- Operating Hours Row -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="Active Lab" />
+            android:layout_marginBottom="8dp"
+            android:text="Operating Hours"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <!-- Open Time -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Open Time"
+                app:startIconDrawable="@drawable/ic_time"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etOpenTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="08:00 AM" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Close Time -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="Close Time"
+                app:startIconDrawable="@drawable/ic_time"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCloseTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:inputType="none"
+                    android:text="06:00 PM" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Booking Duration Limits -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Booking Duration Limits"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <!-- Min Booking Minutes -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Min Duration (mins)"
+                app:helperText="Minimum booking duration"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMinBookingMinutes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="30" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Max Booking Hours -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="Max Duration (hrs)"
+                app:helperText="Maximum booking duration"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMaxBookingHours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="4" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Status and Priority -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Active Status -->
+            <CheckBox
+                android:id="@+id/cbActive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:text="Active"
+                android:checked="true" />
+
+            <!-- Maintenance Mode -->
+            <CheckBox
+                android:id="@+id/cbMaintenanceMode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maintenance Mode"
+                android:checked="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <!-- Priority -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Priority (1-10)"
+                app:helperText="Lower = higher priority"
+                app:startIconDrawable="@drawable/ic_priority"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPriority"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:text="0"
+                    android:maxLength="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Hourly Rate -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="8dp"
+                android:hint="Hourly Rate"
+                app:prefixText="$"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etHourlyRate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:text="0.00" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
+
 </ScrollView>
